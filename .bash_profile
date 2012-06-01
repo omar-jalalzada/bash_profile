@@ -44,7 +44,7 @@ gp () {
 # git push origin <specific branch>
 # i.e. $ gpu master 
 gpu () {
-  echo "==> git pull origin" $1
+  echo "==> git push origin" $1
   git push origin $1
 }
 
@@ -107,62 +107,6 @@ gmb () {
     echo "Please specifiy two branchs. i.e. \$ gmhellb master deploy"
   fi
 }
-
-# Mergin a specific branch to the current branch
-# # e.i $ gub master dev
-# gmb () {
-
-#   if [ "$1" ] ;then
-
-#     local current_branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`;
-
-#     # Time starting
-#     echo "Start Date:" `date +%r`
-#     echo "Current Branch:" $current_branch;
-#     echo "==> git pull origin" $current_branch;
-#     git pull origin $current_branch
-#     if [ $? -ne 0 ] ; then
-#       echo ""
-#       echo "==> Cannot proceed, double check your repo and make sure you have committed all your changes"
-#     else 
-#       echo ""
-#       echo "==> git push origin" $current_branch
-#       git push origin $current_branch
-#       echo ""
-#       echo "==> got checkout" $1
-#       git checkout $1
-      
-#       if [ $? -ne 0 ] ; then
-#         echo ""
-#         echo "==> Cannot proceed, fix the issues with '" $1 "' branch. Make sure it exists. "
-#       else 
-#         echo ""
-#         echo "==> Deploy Branch Found, intiate pull and push sequence:"
-#         echo ""
-#         echo "==> git pull origin" $1
-#         git pull origin $1
-#         echo ""
-#         echo "==> git merge" $current_branch
-#         git merge $current_branch
-#         echo ""
-#         echo "==> git push origin" $1
-#         git push origin $1
-#         echo ""
-#         echo "==> git checkout" $current_branch
-#         git checkout $current_branch
-#       fi
-
-#     fi
-#     # Time ending
-#     echo "End Date:" `date +%r`
-
-
-#     else 
-#       echo "Please specifiy a branch. i.e. \$gub deploy"
-#   fi
-
-  
-# }
 
 # Lists file in more clear format
 # Stands for: Super ls
