@@ -1,6 +1,10 @@
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export PATH=$PATH:~/bin
+export PATH=/usr/local/bin:$PATH
+
 #!/bin/bash
 
-# export PS1="\e[m\e[0;37m[\W]\e[m";
 function _my_rvm_ruby_version {
   local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
   [ "$gemset" != "" ] && echo "[@$gemset]"
@@ -17,6 +21,7 @@ bash_prompt() {
   PS1="$R\$(_my_rvm_ruby_version)$W[\W]$R\$(_parse_git_branch)\e[m"
 }
 
+
 bash_prompt
 unset bash_prompt
 
@@ -27,10 +32,31 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # source ~/.bash_git_ps1.sh
-source ~/.bash_rc
+# source ~/.bash_rc
 
 # Bash completion
-source /Users/omar/.rvm/scripts/completion
+# source /Users/omar/.rvm/scripts/completion
+rvmdodo () {
+  echo "==> rvmsudo moov server ." $1
+  rvmsudo moov server . $1
+}
+
+# Checking out a branch
+# git checkout <specific branch>
+# i.e. $ gc stage
+gc () {
+  echo "==> git checkout" $1
+  git checkout $1
+}
+
+
+# Pulling remote updates from a specific branch to current branch
+# git pull origin <specific branch>
+# i.e. $ gp master 
+gp () {
+  echo "==> git pull origin" $1
+  git pull origin $1
+}
 
 # Pulling remote updates from a specific branch to current branch
 # git pull origin <specific branch>
@@ -104,9 +130,10 @@ gmb () {
     fi
     
     else
-    echo "Please specifiy two branchs. i.e. \$ gmhellb master deploy"
+    echo "Please specifiy two branchs. i.e. \$ gmb master deploy"
   fi
 }
+
 
 # Lists file in more clear format
 # Stands for: Super ls
@@ -114,3 +141,13 @@ sls () {
   ls -A1p
 }
 #- end
+
+
+##
+# Your previous /Users/omarjalalzada/.bash_profile file was backed up as /Users/omarjalalzada/.bash_profile.macports-saved_2012-12-31_at_03:52:28
+##
+
+# MacPorts Installer addition on 2012-12-31_at_03:52:28: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
